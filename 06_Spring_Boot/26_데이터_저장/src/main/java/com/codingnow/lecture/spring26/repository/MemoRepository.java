@@ -1,0 +1,11 @@
+package com.codingnow.lecture.spring26.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.codingnow.lecture.spring26.entity.Memo;
+
+public interface MemoRepository extends JpaRepository<Memo, Long> {
+    List<Memo> findByTitleContaining(String keyword);
+}
