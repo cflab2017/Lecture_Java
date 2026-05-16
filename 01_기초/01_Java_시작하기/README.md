@@ -155,6 +155,140 @@ java Hello         # 실행 (확장자 없음!)
 
 본 강의는 두 도구 어느 쪽이든 동일하게 따라할 수 있게 작성되어 있습니다.
 
+### 6) 운영체제별 IDE 설치
+
+#### IntelliJ IDEA Community Edition
+
+다운로드 페이지: <https://www.jetbrains.com/idea/download/?section=>
+
+**Windows**
+
+1. JetBrains 사이트의 **"Community Edition"** 탭에서 `.exe` 인스톨러 다운로드
+2. 더블 클릭 후 마법사 따라가기 (64-bit launcher / Add bin folder to PATH 체크 추천)
+3. 기본 설치 경로:
+   ```
+   C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.x\
+   ```
+4. 사용자 설정(프로젝트 캐시·인덱스):
+   ```
+   C:\Users\<유저>\AppData\Roaming\JetBrains\IdeaIC2025.x\
+   ```
+
+**macOS**
+
+옵션 A — Homebrew:
+
+```bash
+brew install --cask intellij-idea-ce
+```
+
+옵션 B — JetBrains 사이트에서 `.dmg` 받아 드래그.
+설치 경로:
+
+```
+/Applications/IntelliJ IDEA CE.app
+```
+
+사용자 설정:
+
+```
+~/Library/Application Support/JetBrains/IdeaIC2025.x/
+```
+
+**Linux (Ubuntu/Debian)**
+
+옵션 A — Snap (가장 간편):
+
+```bash
+sudo snap install intellij-idea-community --classic
+```
+
+설치 경로: `/snap/intellij-idea-community/current/`
+
+옵션 B — JetBrains 사이트의 `.tar.gz` 를 `/opt` 에 풀기:
+
+```bash
+sudo tar -xzf ideaIC-2025.x.tar.gz -C /opt
+sudo ln -sf /opt/idea-IC-*/bin/idea.sh /usr/local/bin/idea
+idea  # 실행
+```
+
+사용자 설정: `~/.config/JetBrains/IdeaIC2025.x/`
+
+#### VS Code + Extension Pack for Java
+
+다운로드 페이지: <https://code.visualstudio.com/Download>
+
+**Windows**
+
+1. `.exe` (User Installer 권장) 다운로드 후 설치
+2. 기본 설치 경로(User Installer):
+   ```
+   C:\Users\<유저>\AppData\Local\Programs\Microsoft VS Code\
+   ```
+3. 시스템 전체 설치(System Installer) 의 경우:
+   ```
+   C:\Program Files\Microsoft VS Code\
+   ```
+
+**macOS**
+
+옵션 A — Homebrew:
+
+```bash
+brew install --cask visual-studio-code
+```
+
+옵션 B — 사이트에서 `.zip` 받아 압축 해제 후 `Applications` 로 드래그.
+설치 경로:
+
+```
+/Applications/Visual Studio Code.app
+```
+
+**Linux (Ubuntu/Debian)**
+
+옵션 A — Microsoft `.deb`:
+
+```bash
+sudo apt install -y wget gpg apt-transport-https
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc \
+  | gpg --dearmor | sudo tee /etc/apt/keyrings/packages.microsoft.gpg > /dev/null
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] \
+  https://packages.microsoft.com/repos/code stable main" \
+  | sudo tee /etc/apt/sources.list.d/vscode.list
+
+sudo apt update
+sudo apt install -y code
+```
+
+설치 경로: `/usr/share/code/` , 실행 파일은 `/usr/bin/code`.
+
+옵션 B — Snap:
+
+```bash
+sudo snap install --classic code
+```
+
+**Java 확장 팩 설치 (공통)**
+
+VS Code 를 실행하고 좌측 Extensions 아이콘(`Ctrl+Shift+X`) 에서
+**`Extension Pack for Java`** (Microsoft 제공) 를 검색해 설치합니다.
+명령줄로도 가능:
+
+```bash
+code --install-extension vscjava.vscode-java-pack
+```
+
+이 팩에 포함된 것:
+- Language Support for Java (Red Hat)
+- Debugger for Java
+- Test Runner for Java
+- Maven for Java
+- Project Manager for Java
+
+> **참고:** VS Code 의 Java 확장은 내부적으로 시스템 `JAVA_HOME` 을 그대로 사용합니다. 앞서 JDK 21 설치 후 `JAVA_HOME` 이 21 로 설정돼 있다면 별도 IDE 설정은 필요 없습니다.
+
 ## 예제로 보기
 
 ### 예제 1 — `Hello.java` : 가장 작은 Java 프로그램
