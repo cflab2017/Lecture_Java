@@ -1,0 +1,21 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+group = 'com.codingnow'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'com.codingnow.lecture.modern21.App'
+}
