@@ -20,7 +20,110 @@ java --version    # openjdk 21.x.x
 javac --version   # javac 21.x.x
 ```
 
-### 2) `Hello.java` 파일 구조
+### 2) 운영체제별 JDK 21 설치
+
+다운로드 페이지: <https://adoptium.net/temurin/releases/?version=21>
+
+#### Windows
+
+1. Temurin 사이트에서 **`OpenJDK 21 - Windows x64 .msi`** 를 받아 더블 클릭으로 설치
+2. 설치 마법사에서 **"Set JAVA_HOME variable"** 과 **"Add to PATH"** 옵션 체크
+3. 기본 설치 경로:
+   ```
+   C:\Program Files\Eclipse Adoptium\jdk-21.x.x-hotspot\
+   ```
+4. PowerShell 을 새로 열고 확인:
+   ```powershell
+   $env:JAVA_HOME
+   # C:\Program Files\Eclipse Adoptium\jdk-21.x.x-hotspot
+   java --version
+   ```
+5. 수동 설정이 필요하면 `시스템 속성 → 고급 → 환경 변수` 에서
+   - `JAVA_HOME` = `C:\Program Files\Eclipse Adoptium\jdk-21.x.x-hotspot`
+   - `Path` 에 `%JAVA_HOME%\bin` 추가
+
+#### macOS
+
+옵션 A — **Homebrew** (권장):
+
+```bash
+brew install --cask temurin@21
+```
+
+설치 경로:
+
+```
+/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
+```
+
+`~/.zshrc` 에 다음을 추가하고 `source ~/.zshrc`:
+
+```bash
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+export PATH="$JAVA_HOME/bin:$PATH"
+```
+
+옵션 B — Temurin 사이트에서 **`.pkg`** 받아 설치 (위와 같은 경로에 설치됨).
+
+#### Linux (Ubuntu/Debian)
+
+옵션 A — **apt** 로 OpenJDK 21:
+
+```bash
+sudo apt update
+sudo apt install -y openjdk-21-jdk
+```
+
+설치 경로:
+
+```
+/usr/lib/jvm/java-21-openjdk-amd64
+```
+
+옵션 B — Adoptium Temurin 저장소:
+
+```bash
+# 키와 저장소 추가
+sudo apt install -y wget apt-transport-https
+wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public \
+  | sudo gpg --dearmor -o /etc/apt/keyrings/adoptium.gpg
+echo "deb [signed-by=/etc/apt/keyrings/adoptium.gpg] \
+  https://packages.adoptium.net/artifactory/deb $(lsb_release -cs) main" \
+  | sudo tee /etc/apt/sources.list.d/adoptium.list
+
+sudo apt update
+sudo apt install -y temurin-21-jdk
+```
+
+설치 경로:
+
+```
+/usr/lib/jvm/temurin-21-jdk-amd64
+```
+
+`~/.bashrc` (또는 `~/.zshrc`) 에:
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
+export PATH="$JAVA_HOME/bin:$PATH"
+```
+
+#### 설치 확인 (공통)
+
+```bash
+java --version
+# openjdk 21.x.x 또는 temurin 21.x.x
+
+javac --version
+# javac 21.x.x
+
+echo $JAVA_HOME      # macOS / Linux
+# /Library/Java/... 또는 /usr/lib/jvm/...
+```
+
+`java` / `javac` 가 모두 21 이면 준비 완료입니다.
+
+### 3) `Hello.java` 파일 구조
 
 ```java
 public class Hello {
@@ -34,7 +137,7 @@ public class Hello {
 - `main(String[] args)` 가 **실행 진입점**입니다
 - `System.out.println(...)` 은 한 줄을 출력하고 줄바꿈을 추가합니다
 
-### 3) 컴파일과 실행
+### 4) 컴파일과 실행
 
 ```bash
 javac Hello.java   # Hello.class 생성
@@ -43,7 +146,7 @@ java Hello         # 실행 (확장자 없음!)
 
 `javac` 는 `.java` 소스를 **바이트코드** `.class` 로 변환하고, `java` 는 JVM 위에서 그 바이트코드를 실행합니다.
 
-### 4) IDE 선택
+### 5) IDE 선택
 
 | 도구 | 장점 |
 |---|---|
