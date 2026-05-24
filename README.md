@@ -2,6 +2,10 @@
 
 > 한국어로 배우는 Java 기초부터 Spring Boot REST API까지, 26편으로 정리한 입문 강의입니다.
 
+> 🌐 **전체 26편 강의 보기** — [https://coding-now.com/blog/java](https://coding-now.com/blog/java)
+>
+> 한국어 무료 코딩 강의 264편 + 개발자 도구 모음 · Coding Now
+
 ## 강의 소개
 
 이 강의는 프로그래밍을 처음 시작하거나 다른 언어 경험이 있는 학습자가 **Java**의 기초 문법부터 **객체지향**, **모던 자바**, 그리고 **Spring Boot** 를 활용한 간단한 REST API 까지 한 번에 익히도록 만든 입문 코스입니다.
